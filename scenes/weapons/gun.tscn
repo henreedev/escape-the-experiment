@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://deooym1ld58k3"]
+
+[ext_resource type="Script" path="res://scenes/weapons/gun.gd" id="1_08l81"]
+[ext_resource type="PackedScene" uid="uid://160q00fooghn" path="res://scenes/bullets/bullet.tscn" id="2_62hg5"]
+
+[sub_resource type="Gradient" id="Gradient_4ani3"]
+offsets = PackedFloat32Array(0, 0.571429, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0.176397, 0.18515, 0.196147, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_it0li"]
+gradient = SubResource("Gradient_4ani3")
+width = 4
+height = 4
+fill_from = Vector2(0.0229358, 1)
+fill_to = Vector2(0.477064, 0.376147)
+
+[node name="Gun" type="Sprite2D" groups=["guns"]]
+texture = SubResource("GradientTexture2D_it0li")
+script = ExtResource("1_08l81")
+bullet_scene = ExtResource("2_62hg5")
+
+[node name="Bullets" type="Node" parent="."]

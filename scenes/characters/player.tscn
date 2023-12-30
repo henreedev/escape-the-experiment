@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cegdwkrjusqw0"]
+
+[ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="1_kw67h"]
+[ext_resource type="Script" path="res://scenes/characters/player.gd" id="1_yr4cr"]
+[ext_resource type="Texture2D" uid="uid://dw6re0wyjxsr7" path="res://assets/image/player.png" id="2_65503"]
+[ext_resource type="Script" path="res://scenes/characters/gunhand.gd" id="4_fim3l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yrijj"]
+size = Vector2(16, 16)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+motion_mode = 1
+script = ExtResource("1_yr4cr")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_yrijj")
+
+[node name="Smoothing" type="Node2D" parent="."]
+script = ExtResource("1_kw67h")
+
+[node name="Camera2D" type="Camera2D" parent="Smoothing"]
+zoom = Vector2(3, 3)
+limit_left = 0
+limit_top = 0
+limit_right = 1152
+limit_bottom = 648
+limit_smoothed = true
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Smoothing"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_65503")
+
+[node name="GunHand" type="Node2D" parent="."]
+script = ExtResource("4_fim3l")

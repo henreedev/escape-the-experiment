@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://dms76naxl8ilm"]
+
+[ext_resource type="PackedScene" uid="uid://cegdwkrjusqw0" path="res://scenes/characters/player.tscn" id="1_ya6t7"]
+[ext_resource type="PackedScene" uid="uid://dbgvqwd2gpxc0" path="res://scenes/characters/zombie.tscn" id="2_rfsu3"]
+[ext_resource type="PackedScene" uid="uid://c8njaclxkbh4k" path="res://scenes/objects/tent.tscn" id="3_8bsfp"]
+[ext_resource type="Texture2D" uid="uid://buvelwby6ja7" path="res://assets/image/acid-raindrop.png" id="5_xavp3"]
+[ext_resource type="Script" path="res://scenes/ZombieSpawner.gd" id="5_xd788"]
+[ext_resource type="PackedScene" uid="uid://deooym1ld58k3" path="res://scenes/weapons/gun.tscn" id="6_7ftqt"]
+
+[sub_resource type="Gradient" id="Gradient_55dk6"]
+offsets = PackedFloat32Array(0, 0.564935, 1)
+colors = PackedColorArray(0.772075, 0.40402, 0.133949, 1, 0.458113, 0.386054, 2.88785e-07, 1, 0.502694, 0.29689, 1.92523e-07, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_evvul"]
+gradient = SubResource("Gradient_55dk6")
+fill = 2
+fill_from = Vector2(0.504587, 0.490826)
+fill_to = Vector2(0.536697, 0)
+
+[sub_resource type="Curve2D" id="Curve2D_pj8uu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1152, 648, 0, 0, 0, 0, 0, 648, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3b44m"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(576, 1, 1)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 146.07
+initial_velocity_max = 202.25
+gravity = Vector3(0, 5, 0)
+scale_max = 1.2
+hue_variation_max = 0.1
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.0
+
+[node name="Main" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(0.52549, 0.52549, 0.52549, 1)
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = SubResource("GradientTexture2D_evvul")
+
+[node name="ZombieSpawner" type="Node2D" parent="."]
+script = ExtResource("5_xd788")
+mob_scene = ExtResource("2_rfsu3")
+
+[node name="MobTimer" type="Timer" parent="ZombieSpawner"]
+autostart = true
+
+[node name="MobPath" type="Path2D" parent="ZombieSpawner"]
+curve = SubResource("Curve2D_pj8uu")
+
+[node name="MobSpawnPoint" type="PathFollow2D" parent="ZombieSpawner/MobPath"]
+
+[node name="Player" parent="." instance=ExtResource("1_ya6t7")]
+position = Vector2(582, 318)
+
+[node name="Tent" parent="." instance=ExtResource("3_8bsfp")]
+position = Vector2(582, 318)
+scale = Vector2(2.5, 2.5)
+
+[node name="Rain" type="GPUParticles2D" parent="."]
+position = Vector2(576, 0)
+amount = 1390
+process_material = SubResource("ParticleProcessMaterial_3b44m")
+texture = ExtResource("5_xavp3")
+lifetime = 4.0
+visibility_rect = Rect2(-576, 0, 1152, 648)
+
+[node name="Gun" parent="." instance=ExtResource("6_7ftqt")]
+position = Vector2(576, 384)
+
+[connection signal="timeout" from="ZombieSpawner/MobTimer" to="ZombieSpawner" method="_on_mob_timer_timeout"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8njaclxkbh4k"]
+
+[ext_resource type="Texture2D" uid="uid://2uqicxgf3vh4" path="res://assets/image/tent.png" id="1_5tjt6"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rsm5q"]
+polygon = PackedVector2Array(-6, -26, -5, -8, -9, -23, -8, -6, -12, -20, -12, -4, -15, -18, -17, -2, -20, -16, -23, -1, -23, -16, -26, -1, -28, -16, -29, -1, -30, -16, -31, 0, -23, 0, -17, -1, -11, -3, -5, -7, 0, -12, 7, -5, 11, -3, 17, 0, 23, 0, 31, 1, 30, -15, 27, -1, 25, -15, 22, -2, 20, -16, 17, -2, 14, -19, 11, -4, 9, -22, 8, -6, 5, -27, 3, -10, 0, -31, -1, -12, -4, -29, -3, -10)
+
+[node name="Tent" type="Sprite2D"]
+texture = ExtResource("1_5tjt6")
+
+[node name="ParticleBlocker" type="LightOccluder2D" parent="."]
+show_behind_parent = true
+occluder = SubResource("OccluderPolygon2D_rsm5q")
