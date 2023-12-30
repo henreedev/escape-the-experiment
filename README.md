@@ -8,7 +8,7 @@ In the Godot editor, press F5 to run the main scene (`scenes/main.tscn`).
 Updated 12/29/2023
 
 Project contribution will generally follow the following steps:
-1. Clone the remote (online) repository to your machine using `git clone https://github.com/henreedev/escape-the-experiment.git` in a command prompt (Git Bash)
+1. Clone the remote (online) repository to your machine using `git clone https://github.com/henreedev/escape-the-experiment.git` in a command prompt (install Git Bash here https://git-scm.com/downloads)
 2. Checkout the main branch using `git checkout main`
 3. Pull the current main branch using `git pull`
 4. Create and switch to a new branch using `git checkout -b <branch_name>`
@@ -18,7 +18,5 @@ Project contribution will generally follow the following steps:
 8. Others can review and confirm the changes. If you're confident, you can close the pull request (merge) yourself. 
 
 Resources for learning GDScript and Godot:
-	GDScript Basics
-- https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html 
-	Godot Editor Basics
-- https://docs.godotengine.org/en/3.1/getting_started/step_by_step/intro_to_the_editor_interface.html
+- GDScript Basics: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html 
+- Godot Editor Basics: https://docs.godotengine.org/en/3.1/getting_started/step_by_step/intro_to_the_editor_interface.html
